@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">YelpApiExample</string>
+
+    <string name="et_location">Search Location</string>
+    <string name="et_term">Seach Term</string>
+    <string name="et_limit">Number of Results</string>
+
+    <string name="tv_results_default">No Queries Made...</string>
+
+    <string name="bt_search">Search</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- Limit on yelp api search results is 20 -->
+    <string-array name="spinner_limit">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+
+</resources>

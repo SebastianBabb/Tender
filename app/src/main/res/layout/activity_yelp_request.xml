@@ -1,0 +1,49 @@
+<!-- This is where the user interface is defined.
+     All this one does is create a container (the
+     linear layout) that stacks the elements it
+     contains vertically.  The first two edittext
+     elements are the input fields.  The spinner
+     is the menu for the number of results to
+     return.  The button needs no explanation and
+     the textview is where the results are displayed.
+ -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/et_location"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/et_location" />
+
+    <EditText
+        android:id="@+id/et_term"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/et_term" />
+
+    <Spinner
+        android:id="@+id/spinner_limit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/bt_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_search" />
+
+    <TextView
+        android:id="@+id/tv_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="500"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:scrollbars="vertical"
+        android:text="@string/tv_results_default" />
+
+</LinearLayout>
