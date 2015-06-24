@@ -6,3 +6,5 @@ State University Summer 2015.  In order to make calls to the yelp api, you will
 need to register as a developer with yelp at https://www.yelp.com/developers,
 obtain APIv2.0 credentials, and update the YelpRequestService.java file to use
 them.
+
+Members of team 2 include: Elaine Phuong, 
