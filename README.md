@@ -7,4 +7,4 @@ need to register as a developer with yelp at https://www.yelp.com/developers,
 obtain APIv2.0 credentials, and update the YelpRequestService.java file to use
 them.
 
-Members of team 2 include: Elaine Phuong, 
+Members of Team 2: Elaine Phuong, 
