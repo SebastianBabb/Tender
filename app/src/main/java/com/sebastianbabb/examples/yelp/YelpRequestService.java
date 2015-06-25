@@ -78,7 +78,7 @@ public class YelpRequestService extends IntentService {
          */
         YelpAPI yelp = new YelpAPI(CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET);
         String results = yelp.searchForBusinessesByLocation(term, location, limit);
-
+        Restaurant[] restaurants = null;
         /*
          * Log the resulting JSON string.
          */
@@ -91,8 +91,8 @@ public class YelpRequestService extends IntentService {
          */
         try {
             JSONParser parser = new JSONParser(results);
-            // Needs an array name and tag name from the JSON string.
-            results = parser.getTag("businesses", "name");
+            // Parse the json for restaurant objects.
+            restaurants = parser.getRestaurants("businesses");
         } catch (JSONException e) {
             System.out.print(e.toString());
         }
@@ -103,7 +103,7 @@ public class YelpRequestService extends IntentService {
         Intent resultIntent = new Intent();
         resultIntent.setAction(ACTION_YELP_REQUEST_SERVICE);
         resultIntent.addCategory(Intent.CATEGORY_DEFAULT);
-        resultIntent.putExtra(RESULT_KEY, results);
+        resultIntent.putExtra(RESULT_KEY, restaurants);
         LocalBroadcastManager.getInstance(this).sendBroadcast(resultIntent);
     }
 }
