@@ -6,11 +6,10 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
-
 /**
  * A class for parsing JSON strings.
  * Created by sebastian on 6/18/15.
+ *
  * @author Sebastian Babb
  * @version 1.0
  *          Date: 06/18/2015
@@ -20,6 +19,9 @@ public class JSONParser {
     private static final String TAG = "JSONParser";
     private String mJsonString;
     private JSONObject mJsonObject;
+
+    // Holds a list of restaurant names.
+    private String[] restaurantList;
 
     public JSONParser(String json) throws JSONException {
         // Log the location.
@@ -80,9 +82,11 @@ public class JSONParser {
         JSONArray jsonArray = this.mJsonObject.getJSONArray(arrayName);
 
         /*
-         * Use the length of jsonArray to create a restaurant array.
+         * Use the length of jsonArray to create a restaurant array.  Then create a parallel array
+         * to store the list of restaurant names.
          */
         Restaurant[] restaurants = new Restaurant[jsonArray.length()];
+        this.restaurantList = new String[restaurants.length];
 
         /*
          * Loop through jsonArray creating restaurant objects and add
@@ -91,11 +95,13 @@ public class JSONParser {
         for (int i = 0; i < jsonArray.length(); i++) {
             // Create a new restaurant object.
             restaurants[i] = new Restaurant(jsonArray.getJSONObject(i).getString("name"),
-                                            jsonArray.getJSONObject(i).getString("mobile_url"),
-                                            // The display_address array returns three items ["street address", "neighborhood", "City, State, Zip"]
-                                            jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(0),
-                                            jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(1),
-                                            jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(2));
+                    jsonArray.getJSONObject(i).getString("mobile_url"),
+                    // The display_address array returns three items ["street address", "neighborhood", "City, State, Zip"]
+                    jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(0),
+                    jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(1),
+                    jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(2));
+            // Add the restaurant name to restaurantList array.
+            this.restaurantList[i] = restaurants[i].getName();
 
             // Log the each restauarnt being added the array.
             Log.i(TAG, restaurants[i].getName() + " " + restaurants[i].getMobileUrl() + " " + restaurants[i].getAddress());
@@ -105,5 +111,12 @@ public class JSONParser {
          * Return the restaurants array.
          */
         return restaurants;
+    }
+
+    /**
+     * @return A String array of restaurant names that is parallel to the restaurants object array.
+     */
+    public String[] getRestaurantList() {
+        return this.restaurantList;
     }
 }

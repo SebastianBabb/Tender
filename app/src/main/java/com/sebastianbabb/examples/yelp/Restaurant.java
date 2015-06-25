@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author Sebastian Babb
  * @version 1.0
- * Date: 06/17/2015
+ *          Date: 06/17/2015
  */
 public class Restaurant implements Serializable {
     /*
@@ -36,26 +36,26 @@ public class Restaurant implements Serializable {
 
     public Restaurant(String pName, String pMobileUrl) {
         this.mName = pName;
-        this.mMobileUrl  = pMobileUrl;
+        this.mMobileUrl = pMobileUrl;
     }
 
     public Restaurant(String pName, String pMobileUrl, String pAddress) {
         this.mName = pName;
-        this.mMobileUrl  = pMobileUrl;
-        this.mAddress= pAddress;
+        this.mMobileUrl = pMobileUrl;
+        this.mAddress = pAddress;
     }
 
     public Restaurant(String pName, String pMobileUrl, String pAddress, String pNeighborhood) {
         this.mName = pName;
-        this.mMobileUrl  = pMobileUrl;
-        this.mAddress= pAddress;
+        this.mMobileUrl = pMobileUrl;
+        this.mAddress = pAddress;
         this.mNeighborhood = pNeighborhood;
     }
 
     public Restaurant(String pName, String pMobileUrl, String pAddress, String pNeighborhood, String pCityStateZip) {
         this.mName = pName;
-        this.mMobileUrl  = pMobileUrl;
-        this.mAddress= pAddress;
+        this.mMobileUrl = pMobileUrl;
+        this.mAddress = pAddress;
         this.mCityStateZip = pCityStateZip;
         this.mNeighborhood = pNeighborhood;
     }

@@ -87,7 +87,7 @@ public class YelpRequestService extends IntentService {
 
         /*
          * Create a JSONParser object passing the JSON string in as a parameter.  Then call the
-         * JSONParser's getTag method to retrieve a list a restaurant names from the search results.
+         * JSONParser's getRestaurants method to retrieve a list a restaurant objects.
          */
         try {
             JSONParser parser = new JSONParser(results);
@@ -99,6 +99,8 @@ public class YelpRequestService extends IntentService {
 
         /*
          * Broadcast the results to YelpRequestActivity using the local broadcast manager.
+         * This is where the search results get packaged in an intent and sent back to the
+         * activity that called the service.
          */
         Intent resultIntent = new Intent();
         resultIntent.setAction(ACTION_YELP_REQUEST_SERVICE);

@@ -2,23 +2,23 @@ package com.sebastianbabb.examples.yelp;
 
 import java.util.HashMap;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.PopupMenu;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * The YelpRequestActivity is an example activity demonstrating the use of the yelp API
@@ -31,7 +31,7 @@ import android.widget.EditText;
  * @version 1.0
  *          Date: 06/17/2015
  */
-public class YelpRequestActivity extends Activity implements OnClickListener {
+public class YelpRequestActivity extends ListActivity implements OnClickListener {
     // Log TAG for monitoring this activity in the system logs.
     public static final String TAG = "YelpRequestActivity";
 
@@ -43,14 +43,19 @@ public class YelpRequestActivity extends Activity implements OnClickListener {
     public static final String HASH_KEY_SEARCH_TERM = "SEARCH TERM";
     public static final String HASH_KEY_SEARCH_LIMIT = "SEARCH LIMIT";
 
+    // View widgets.
     private EditText mEditTextLocation;   // Search location input.
     private EditText mEditTextTerm;       // Search term input.
     private Spinner mSpinnerLimit;        // Search results limit.
-    private TextView mTextViewResults;    // Search results display.
     private Button mButtonSearch;         // Search button.
+    private TextView mTextViewEmpty;      // Default results display (needed for updating).
 
     // A broadcast receiver for receiving the intent containing the search results from the service.
     private YelpBroadcastReceiver mBroadcastReceiver;
+
+    // Holds the restaurant results from yelp.
+    private Restaurant[] restaurants;
+
 
     // The onCreate method is called when the application is opened. This is were everything happens.
     @Override
@@ -72,20 +77,18 @@ public class YelpRequestActivity extends Activity implements OnClickListener {
         mEditTextLocation = (EditText) findViewById(R.id.et_location);
         mEditTextTerm = (EditText) findViewById(R.id.et_term);
         mSpinnerLimit = (Spinner) findViewById(R.id.spinner_limit);
-        mTextViewResults = (TextView) findViewById(R.id.tv_results);
         mButtonSearch = (Button) findViewById(R.id.bt_search);
+        mTextViewEmpty = (TextView) getListView().getEmptyView();
 
-        // Make the textview that displays the results scrollable.
-        mTextViewResults.setMovementMethod(new ScrollingMovementMethod());
 
         /*
-         * Create an ArrayAdapter using the string array declared in res/values/strings.xml
-         * and a default spinner layout.
+         * Create an ArrayAdapter for the spinner using the string array declared
+         * in res/values/strings.xml and a default spinner layout.
          */
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_limit, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears.
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
+        // Apply the adapter to the spinner.
         mSpinnerLimit.setAdapter(adapter);
 
         // Set the onclick listener for the search button.
@@ -103,7 +106,9 @@ public class YelpRequestActivity extends Activity implements OnClickListener {
         localBroadcastManager.registerReceiver(mBroadcastReceiver, intentFilter);
     }
 
-    // When the app is destroyed, unregister the broadcast receiver.
+    /*
+     * When the app is destroyed, unregister the broadcast receiver.
+     */
     @Override
     public void onDestroy() {
         // Dont forget to call the parent function.
@@ -147,7 +152,8 @@ public class YelpRequestActivity extends Activity implements OnClickListener {
         /*
          * Build the service request intent for calling the YelpRequestService class and store the
          * hashmap of search parameters in it.  Then start the service.  A hashmap can stored in
-         * an intent as an extra because it extends serializable.
+         * an intent as an extra because it extends serializable.  This is where the call to the
+         * yelp api starts.
          */
         Log.i(TAG, "Calling YelpRequestService.");
         Intent serviceRequestIntent = new Intent(this, YelpRequestService.class);
@@ -156,8 +162,24 @@ public class YelpRequestActivity extends Activity implements OnClickListener {
     }
 
     /**
+     * Displays the name, address, and mobile url of the restaurant the is clicked.
+     *
+     * @param lv       The ListView object the item belongs to.
+     * @param v        The view of the clicked object.
+     * @param position The position in the list of the clicked item (starting at 0).
+     * @param id       The object id of the clicked item.
+     */
+    protected void onListItemClick(ListView lv, View v, int position, long id) {
+        Toast.makeText(this, restaurants[position].getName() + "\n" +
+                restaurants[position].getAddress() + ", " +
+                restaurants[position].getCityStateZip() + "\n" +
+                restaurants[position].getMobileUrl(), Toast.LENGTH_SHORT).show();
+    }
+
+    /**
      * A class that extends BroadcastReceiver for listening for updates from a background service.
      * This is the method that will be executed when the service has completed its background task.
+     * That is, this is where the UI gets updated with the search results.
      *
      * @author Sebastian Babb
      * @version 1.0
@@ -166,25 +188,43 @@ public class YelpRequestActivity extends Activity implements OnClickListener {
     private class YelpBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Retrieve the search results from the intent - an array of restaurants objects.
-            Restaurant[] restaurants = (Restaurant[])intent.getSerializableExtra(YelpRequestService.RESULT_KEY);
-
-            // Clear the textview of its default message.
-            mTextViewResults.setText("");
             /*
-             * Check that the restaurant array is not null and then loop through the results and
-             * append the names, url, address to the edittext object.
+             * Retrieve the search results from the intent and store them in an outer class field
+             * so that they can used by the addItems method.
              */
-            if(restaurants != null) {
-                for (int i = 0; i < restaurants.length; i++) {
-                    mTextViewResults.append(restaurants[i].getName() + "\n");
-                    mTextViewResults.append(restaurants[i].getMobileUrl() + "\n");
-                    mTextViewResults.append(restaurants[i].getAddress() + ", " + restaurants[i].getNeighborhood() + ", ");
-                    mTextViewResults.append(restaurants[i].getCityStateZip() + "\n\n");
-                }
-            } else {
-                mTextViewResults.setText("No Matches Found.");
+            restaurants = (Restaurant[]) intent.getSerializableExtra(YelpRequestService.RESULT_KEY);
+
+
+            /*
+             * Check that the restaurant array is not null and then make a parallel array of
+             * the restaurant names.  This will be used as the list of strings to populate the
+             * list view.
+             */
+            if (restaurants != null) {
+                // Array of restaurant names.
+                String[] restaurantList = new String[restaurants.length];
+                // Populate with restaurant names.
+                for (int i = 0; i < restaurantList.length; i++)
+                    restaurantList[i] = restaurants[i].getName();
+
+                /*
+                 * Create am array adapter using the array of restaurant names and call setListAdapter.
+                 */
+                ArrayAdapter<String> restaurantListArrayAdapter = new ArrayAdapter<String>(context,
+                        android.R.layout.simple_list_item_1, android.R.id.text1, restaurantList);
+                setListAdapter(restaurantListArrayAdapter);
+            }
+            else {
+                /*
+                 * Check if the list has been displayed and clear it.  Then update the default
+                 * text view to say that no results were found.
+                 */
+                if(getListView() != null)
+                     getListView().setAdapter(null);
+                mTextViewEmpty.setText("No Results Found...");
             }
         }
     }
+
+
 }
