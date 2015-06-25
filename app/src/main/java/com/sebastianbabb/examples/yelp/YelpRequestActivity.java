@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -165,10 +166,25 @@ public class YelpRequestActivity extends Activity implements OnClickListener {
     private class YelpBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Retrieve the result string from the intent sent by the service.
-            String result = intent.getStringExtra(YelpRequestService.RESULT_KEY);
-            // Update the textview with the result string.
-            mTextViewResults.setText(result);
+            // Retrieve the search results from the intent - an array of restaurants objects.
+            Restaurant[] restaurants = (Restaurant[])intent.getSerializableExtra(YelpRequestService.RESULT_KEY);
+
+            // Clear the textview of its default message.
+            mTextViewResults.setText("");
+            /*
+             * Check that the restaurant array is not null and then loop through the results and
+             * append the names, url, address to the edittext object.
+             */
+            if(restaurants != null) {
+                for (int i = 0; i < restaurants.length; i++) {
+                    mTextViewResults.append(restaurants[i].getName() + "\n");
+                    mTextViewResults.append(restaurants[i].getMobileUrl() + "\n");
+                    mTextViewResults.append(restaurants[i].getAddress() + ", " + restaurants[i].getNeighborhood() + ", ");
+                    mTextViewResults.append(restaurants[i].getCityStateZip() + "\n\n");
+                }
+            } else {
+                mTextViewResults.setText("No Matches Found.");
+            }
         }
     }
 }

@@ -41,6 +41,8 @@ public class JSONParser {
      * @throws JSONException
      */
     public String getTag(String arrayName, String tag) throws JSONException {
+        Log.i(TAG, "calling getTag(" + arrayName + ", " + tag + ")");
+
         // Create a new string builder object.
         StringBuilder result = new StringBuilder();
 
@@ -58,5 +60,50 @@ public class JSONParser {
          * Return the constructed string from the string builder.
          */
         return result.toString();
+    }
+
+    /**
+     * Returns an array of restaurant objects.
+     *
+     * @param arrayName The name of the array containing the tags.
+     * @return An array of restaurants.
+     * @throws JSONException
+     */
+    public Restaurant[] getRestaurants(String arrayName) throws JSONException {
+        Log.i(TAG, "calling getRestaurants(" + arrayName + ")");
+
+        /*
+         * Get the jsonarray "businesses" the  from the jsonobject.
+         * The "businesses" array name is currently passed in as a
+         * parameter.
+         */
+        JSONArray jsonArray = this.mJsonObject.getJSONArray(arrayName);
+
+        /*
+         * Use the length of jsonArray to create a restaurant array.
+         */
+        Restaurant[] restaurants = new Restaurant[jsonArray.length()];
+
+        /*
+         * Loop through jsonArray creating restaurant objects and add
+         * them to the restaurants array.
+         */
+        for (int i = 0; i < jsonArray.length(); i++) {
+            // Create a new restaurant object.
+            restaurants[i] = new Restaurant(jsonArray.getJSONObject(i).getString("name"),
+                                            jsonArray.getJSONObject(i).getString("mobile_url"),
+                                            // The display_address array returns three items ["street address", "neighborhood", "City, State, Zip"]
+                                            jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(0),
+                                            jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(1),
+                                            jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(2));
+
+            // Log the each restauarnt being added the array.
+            Log.i(TAG, restaurants[i].getName() + " " + restaurants[i].getMobileUrl() + " " + restaurants[i].getAddress());
+        }
+
+        /*
+         * Return the restaurants array.
+         */
+        return restaurants;
     }
 }
