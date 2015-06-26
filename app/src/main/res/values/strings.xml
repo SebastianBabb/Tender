@@ -5,7 +5,8 @@
     <string name="et_term">Seach Term</string>
     <string name="et_limit">Number of Results</string>
 
-    <string name="tv_results_default">No Queries Made...</string>
+    <string name="tv_no_queries">No Queries Made...</string>
+    <string name="tv_empty_results">No Results Found...</string>
 
     <string name="bt_search">Search</string>
 
