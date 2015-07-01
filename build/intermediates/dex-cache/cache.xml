@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-3360340fbdb98296c9471f86ede67c6f01944a19.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-5dc33c87abb874f576d1f1f4a6accb88f594d5a8.jar" />
+    </item>
+    <item
+        jar="/usr/local/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-d41cf67ef80b674442eee5971278bd35b7e69357.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/libs/scribe-1.3.5.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a3b3deded9d241d9f2c8aa9c9bcd90ad29e2581e">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/scribe-1.3.5-4e73710e6d3faefd505463fb46fa88b5a52745e0.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-6b73ed9be18d8e4a0a1f6dc6807d1e1b380580d1.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-00f63a99c7f0c5aee5ac93d6ab1dfa9ce4078bef.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-1e1ba5390ae1f5c1933b7513afaa038afcce3df8.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-1503da03422c98ee15d876b22bff35cc96b75e0d.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-8c218dc78ec59ef4a34b7f525a1c1a879d5e6d69.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-d53779e22102a313d96e8ae29474e0da1c000741.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-bad94cddff774a46238a314eb5659dae8bc7769e.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-697f7109e60e099d3b024d811eccd6c2e0a8fb8f.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-d69d8a1ccf1e2b722f888aa57817fcfd853ebf70.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-cab5d0f3f989ce6d7887421f10b3d83517603a69.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-b026638edd353ce034f01d16982d2c85689f4a4c.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8d736fefa22d896e84a268354b3ed48a42663150">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-7e038b37475fa57f147741a9f336976c94d2b21c.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-7db77f4e27d9ed4da34d0577c28e220ce966bdfe.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-b7cdefe134f3ac97dc484a29337dd18a791f2f8c.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-c33f711759b7ec9a47b7688c944c02b79426dc69.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-e52dfc218a8f2458eed438b6ed1d10c5918c2dcc.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-549fc7022464409761888395c2b6d78434fd1cc4.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-d76d51408cce3afdcee9fe106573798396c3b909.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-8832b17f516472605fda0304a05478ea39b5c4b9.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-534b1bc077d87def5d300992f401540ab1e584c6.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d405025c600055237c171a0bbabaa49d69696573">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-3b3f8bc72a8745809517ffe68de48a42edda7ed3.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-822e825ceefd2f53813c8e5e5c871378f6d34e63.jar" />
+    </item>
+    <item
+        jar="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="/home/sebastian/sfsu/csc413/android-project/YelpApiExample-CSC413/app/build/intermediates/pre-dexed/debug/classes-144d876a7030a30d3a8b63440184f93bb06d59a2.jar" />
+    </item>
+
+</items>

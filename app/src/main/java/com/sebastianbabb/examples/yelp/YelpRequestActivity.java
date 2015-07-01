@@ -1,6 +1,7 @@
 package com.sebastianbabb.examples.yelp;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
@@ -68,7 +69,7 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
         super.onCreate(savedInstanceState);
 
         // Log the location.
-        Log.i(TAG, "In YelpRequestActivity constructor.");
+        Log.i(TAG, "in onCreate(Bundle savedInstanceState)");
 
         // Set the content view to our xml layout (res/layout/activity_yelp_request.xml).
         setContentView(R.layout.activity_yelp_request);
@@ -106,6 +107,30 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
         localBroadcastManager.registerReceiver(mBroadcastReceiver, intentFilter);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "in onStart()");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG, "in onResume()");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i(TAG, "in onPause()");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.i(TAG, "in onStop()");
+    }
+
     /*
      * When the app is destroyed, unregister the broadcast receiver.
      */
@@ -113,9 +138,13 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
     public void onDestroy() {
         // Dont forget to call the parent function.
         super.onDestroy();
-
+        Log.i(TAG, "in onDestroy()");
         // Unregister the YelpBroadcastReceiver.
-        unregisterReceiver(mBroadcastReceiver);
+        try {
+            unregisterReceiver(mBroadcastReceiver);
+        } catch(IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -174,6 +203,24 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
                 restaurants[position].getAddress() + ", " +
                 restaurants[position].getCityStateZip() + "\n" +
                 restaurants[position].getMobileUrl(), Toast.LENGTH_SHORT).show();
+
+        // Start the map activity.
+        startMapActivity(position);
+    }
+
+    /**
+     * Opens the map activity.
+     *
+     * @param position The index of the restaurant that was touched in the list.
+     */
+    private void startMapActivity(int position) {
+        // Create a new intent to call the map activity.
+        Intent mapIntent = new Intent(this, MapActivity.class);
+        // Store the restaurants array and which restaurant index was touched.
+        mapIntent.putExtra(MapActivity.RESTAURANTS_ARRAY_KEY, restaurants);
+        mapIntent.putExtra(MapActivity.SELECTED_RESTAURANT_INDEX, position);
+        // Start the activity.
+        startActivity(mapIntent);
     }
 
     /**
@@ -213,14 +260,13 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
                 ArrayAdapter<String> restaurantListArrayAdapter = new ArrayAdapter<String>(context,
                         android.R.layout.simple_list_item_1, android.R.id.text1, restaurantList);
                 setListAdapter(restaurantListArrayAdapter);
-            }
-            else {
+            } else {
                 /*
                  * Check if the list has been displayed and clear it.  Then update the default
                  * text view to say that no results were found.
                  */
-                if(getListView() != null)
-                     getListView().setAdapter(null);
+                if (getListView() != null)
+                    getListView().setAdapter(null);
                 mTextViewEmpty.setText("No Results Found...");
             }
         }
