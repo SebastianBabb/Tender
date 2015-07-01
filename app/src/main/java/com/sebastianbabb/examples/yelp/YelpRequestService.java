@@ -37,13 +37,14 @@ public class YelpRequestService extends IntentService {
     }
 
     /*
+     * THIS IS WHERE YOU NEED TO ADD THE YELP API CREDENTIALS.
      * OAuth credentials for the Yelp API.
      * Site: http://www.yelp.com/developers/getting_started/api_access
      */
-    private static final String CONSUMER_KEY = "76cCryc1HiIv2oIcSERdWw";
-    private static final String CONSUMER_SECRET = "kRzG86ScQoMxRl9oE7eRAonTWTQ";
-    private static final String TOKEN = "JeuDl8Isymn28m2En7SndEuyqGDxZXP3";
-    private static final String TOKEN_SECRET = "3L9qBNvDt12Qnju_IaEs_S3ps54";
+    private static final String CONSUMER_KEY = "";
+    private static final String CONSUMER_SECRET = "";
+    private static final String TOKEN = "";
+    private static final String TOKEN_SECRET = "";
 
     /**
      * In an IntentService, the onHandleIntent method is run on a background thread (the
