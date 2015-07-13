@@ -14,35 +14,49 @@
     android:background="@color/ll_color"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/et_location"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/et_location" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et_term"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/et_term" />
+        <EditText
+            android:id="@+id/et_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:singleLine="true"
+            android:text="San Francisco, ca"
+            android:hint="@string/et_location" />
 
-    <Spinner
-        android:id="@+id/spinner_limit"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_term"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:singleLine="true"
+            android:hint="@string/et_term" />
 
-    <Button
-        android:id="@+id/bt_search"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/bt_color"
-        android:text="@string/bt_search" />
+        <Spinner
+            android:id="@+id/spinner_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"/>
+
+        <Button
+            android:id="@+id/bt_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bt_color"
+            android:layout_weight="0.15"
+            android:text="@string/bt_search" />
+
+    </LinearLayout>
 
     <!-- Displays the results as a list. -->
     <ListView
         android:id="@android:id/list"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"></ListView>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <!-- Default/Empty display for listview -->
     <TextView

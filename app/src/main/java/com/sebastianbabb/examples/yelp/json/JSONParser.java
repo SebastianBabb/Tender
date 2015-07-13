@@ -1,6 +1,8 @@
-package com.sebastianbabb.examples.yelp;
+package com.sebastianbabb.examples.yelp.json;
 
 import android.util.Log;
+
+import com.sebastianbabb.examples.yelp.Restaurant;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -96,6 +98,8 @@ public class JSONParser {
             // Create a new restaurant object.
             restaurants[i] = new Restaurant(jsonArray.getJSONObject(i).getString("name"),
                     jsonArray.getJSONObject(i).getString("mobile_url"),
+                    jsonArray.getJSONObject(i).getString("rating_img_url_small"),
+                    jsonArray.getJSONObject(i).getString("image_url"),
                     // The display_address array returns three items ["street address", "neighborhood", "City, State, Zip"]
                     jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(0),
                     jsonArray.getJSONObject(i).getJSONObject("location").getJSONArray("display_address").getString(1),
@@ -113,10 +117,4 @@ public class JSONParser {
         return restaurants;
     }
 
-    /**
-     * @return A String array of restaurant names that is parallel to the restaurants object array.
-     */
-    public String[] getRestaurantList() {
-        return this.restaurantList;
-    }
 }

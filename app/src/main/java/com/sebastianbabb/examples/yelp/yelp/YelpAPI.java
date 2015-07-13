@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp;
+package com.sebastianbabb.examples.yelp.yelp;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;

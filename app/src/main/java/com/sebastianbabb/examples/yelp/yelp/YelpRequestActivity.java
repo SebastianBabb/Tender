@@ -1,7 +1,6 @@
-package com.sebastianbabb.examples.yelp;
+package com.sebastianbabb.examples.yelp.yelp;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
@@ -13,6 +12,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,6 +20,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.sebastianbabb.examples.yelp.ListItemAdapter;
+import com.sebastianbabb.examples.yelp.maps.MapActivity;
+import com.sebastianbabb.examples.yelp.R;
+import com.sebastianbabb.examples.yelp.Restaurant;
 
 /**
  * The YelpRequestActivity is an example activity demonstrating the use of the yelp API
@@ -159,6 +164,10 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
         // Log location.
         Log.i(TAG, "In  onClick() method. Calling object: " + getResources().getResourceName(v.getId()));
 
+        // Dismiss the virtual keyboard.
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(mEditTextTerm.getWindowToken(), 0);
+
         /*
          * Retrieve the user inputs from the widgets and store them in a hashmap to stored in an
          * intent.  As the Hashmap class is a subclass of serializable, it can be passed in an
@@ -241,24 +250,12 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
              */
             restaurants = (Restaurant[]) intent.getSerializableExtra(YelpRequestService.RESULT_KEY);
 
-
             /*
-             * Check that the restaurant array is not null and then make a parallel array of
-             * the restaurant names.  This will be used as the list of strings to populate the
-             * list view.
+             * Check that the restaurant array is not null and then create am array adapter
+             * using the array of restaurants and call setListAdapter to populate the list view.
              */
             if (restaurants != null) {
-                // Array of restaurant names.
-                String[] restaurantList = new String[restaurants.length];
-                // Populate with restaurant names.
-                for (int i = 0; i < restaurantList.length; i++)
-                    restaurantList[i] = restaurants[i].getName();
-
-                /*
-                 * Create am array adapter using the array of restaurant names and call setListAdapter.
-                 */
-                ArrayAdapter<String> restaurantListArrayAdapter = new ArrayAdapter<String>(context,
-                        android.R.layout.simple_list_item_1, android.R.id.text1, restaurantList);
+                ListItemAdapter restaurantListArrayAdapter = new ListItemAdapter(context, restaurants);
                 setListAdapter(restaurantListArrayAdapter);
             } else {
                 /*

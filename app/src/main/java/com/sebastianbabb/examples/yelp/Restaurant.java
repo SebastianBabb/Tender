@@ -1,6 +1,8 @@
 package com.sebastianbabb.examples.yelp;
 
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * A class for storing information about restaurants.
@@ -18,6 +20,8 @@ public class Restaurant implements Serializable {
      */
     private String mName;
     private String mMobileUrl;
+    private String mRatingImageUrl;
+    private String mRestaurantImageUrl;
     private String mAddress;
     private String mNeighborhood;
     private String mCityStateZip;
@@ -60,6 +64,25 @@ public class Restaurant implements Serializable {
         this.mNeighborhood = pNeighborhood;
     }
 
+    public Restaurant(String pName, String pMobileUrl, String pRatingImageURL, String pAddress, String pNeighborhood, String pCityStateZip) {
+            this.mName = pName;
+            this.mMobileUrl = pMobileUrl;
+            this.mRatingImageUrl = pRatingImageURL;
+            this.mAddress = pAddress;
+            this.mCityStateZip = pCityStateZip;
+            this.mNeighborhood = pNeighborhood;
+        }
+
+    public Restaurant(String pName, String pMobileUrl, String pRatingImageURL, String pRestaurantImageUrl, String pAddress, String pNeighborhood, String pCityStateZip) {
+        this.mName = pName;
+        this.mMobileUrl = pMobileUrl;
+        this.mRatingImageUrl = pRatingImageURL;
+        this.mRestaurantImageUrl = pRestaurantImageUrl;
+        this.mAddress = pAddress;
+        this.mCityStateZip = pCityStateZip;
+        this.mNeighborhood = pNeighborhood;
+    }
+
     /*
      * Setters.
      */
@@ -68,7 +91,16 @@ public class Restaurant implements Serializable {
     }
 
     public void setMobileUrl(String mMobileUrl) {
+
         this.mMobileUrl = mMobileUrl;
+    }
+
+    public void setRatingImageUrl(String ratingImageUrl) {
+        this.mRatingImageUrl = ratingImageUrl;
+    }
+
+    public void setRestaurantImageUrl(String restaurantImageUrl)  throws MalformedURLException{
+        this.mRestaurantImageUrl = restaurantImageUrl;
     }
 
     public void setAddress(String mAddress) {
@@ -92,6 +124,14 @@ public class Restaurant implements Serializable {
 
     public String getMobileUrl() {
         return this.mMobileUrl;
+    }
+
+    public String getRatingImageUrl() {
+        return this.mRatingImageUrl;
+    }
+
+    public String getRestaurantImageUrl() {
+        return this.mRestaurantImageUrl;
     }
 
     public String getAddress() {

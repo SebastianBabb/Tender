@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp;
+package com.sebastianbabb.examples.yelp.yelp;
 
 import org.json.JSONException;
 
@@ -8,6 +8,9 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+
+import com.sebastianbabb.examples.yelp.json.JSONParser;
+import com.sebastianbabb.examples.yelp.Restaurant;
 
 
 /**

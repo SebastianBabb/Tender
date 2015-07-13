@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp;
+package com.sebastianbabb.examples.yelp.yelp;
 
 import org.scribe.builder.api.DefaultApi10a;
 import org.scribe.model.Token;

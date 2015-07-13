@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp;
+package com.sebastianbabb.examples.yelp.maps;
 
 import android.app.IntentService;
 import android.content.Intent;
