@@ -15,7 +15,7 @@ public class SplashScreenService extends IntentService {
     private final String TAG = "SplashService";
 
     // The amount of time to display the splash screen in ms.
-    private final int SPLASH_TIME = 3000;
+    private final int SPLASH_TIME = 4000;
 
     // Default constructor.
     public SplashScreenService() {

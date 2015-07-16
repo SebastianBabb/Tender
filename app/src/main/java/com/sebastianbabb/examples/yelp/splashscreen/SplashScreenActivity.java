@@ -1,6 +1,7 @@
 package com.sebastianbabb.examples.yelp.splashscreen;
 
-import com.sebastianbabb.examples.yelp.R;
+
+
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,8 +14,15 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.view.animation.Animation.AnimationListener;
+import android.media.MediaPlayer;
+import android.os.Handler;
+import android.graphics.drawable.AnimationDrawable;
+import com.sebastianbabb.examples.yelp.R;
+
 
 
 /**
@@ -24,38 +32,39 @@ import android.widget.ImageView;
  */
 public class SplashScreenActivity extends Activity {
     private final String TAG = "SplashActivity";
+    MediaPlayer mp;
 
-    // The splash screen image view.
-    private ImageView mSplashPizza;
+
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         Log.i(TAG, "onCreate()");
 
+        //create new mp and wire it to audio file
+
+        mp = MediaPlayer.create(this,R.raw.chomp_long);
+
+
         // Tell the activity which layout to display.
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_splash);
 
-        /*
-         * Wire up the image view from activity_splash.xml so we can call methods on it.  The image is
-         * located under res/mipmap/pizza.png
-         */
 
-        mSplashPizza = (ImageView) findViewById(R.id.pizza);
 
-        /*
-         * Create an animation object using rotate_pizza.xml from the anim directory under res.
-         * anim does not exist initially, so I created it by left clicking res -> new -> directory.
-         * Checkout this resource: http://developer.android.com/guide/topics/resources/animation-resource.html
-         */
-        Animation pizzaAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate_pizza);
+        final ImageView splashImageView = (ImageView) findViewById(R.id.tender);
+        splashImageView.setBackgroundResource(R.drawable.animation_list);
+        final AnimationDrawable frameAnimation = (AnimationDrawable)splashImageView.getBackground();
 
-        /*
-         * Start the animation.  This will make the image view execute the instruction in rotate_pizza.xml
-         * file.  All it does right now is rotate the pizza continually, but you can change the xml file
-         * to make it do whatever you want to do.
-         */
-        mSplashPizza.setAnimation(pizzaAnimation);
+
+
+        splashImageView.post(new Runnable() {
+            @Override
+            public void run() {
+                frameAnimation.start();
+                mp.start();
+            }
+        });
+
 
     }
 
