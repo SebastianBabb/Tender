@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/TheSplashLayout"
+    android:layout_gravity="center"
+    android:background="#e44c27"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="42dp" />
+
+
+
+
+
+    <ImageView
+        android:id="@+id/tender"
+        android:layout_width="250dp"
+        android:layout_height="425dp"
+        android:layout_marginTop = "100dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        />
+
+
+
+</RelativeLayout>
