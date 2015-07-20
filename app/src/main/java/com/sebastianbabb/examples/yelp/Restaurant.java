@@ -131,6 +131,10 @@ public class Restaurant implements Serializable {
     }
 
     public String getRestaurantImageUrl() {
+        //finds the last / in the url and remove that and everyting after it and adds /l.jpg
+        //to get the larger image instead @gilbert
+        int index = mRestaurantImageUrl.lastIndexOf('/');
+        mRestaurantImageUrl = mRestaurantImageUrl.substring(0,index) + "/l.jpg";
         return this.mRestaurantImageUrl;
     }
 
