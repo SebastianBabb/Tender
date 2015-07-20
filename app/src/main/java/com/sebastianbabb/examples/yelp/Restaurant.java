@@ -1,149 +1,181 @@
 package com.sebastianbabb.examples.yelp;
 
 import java.io.Serializable;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
- * A class for storing information about restaurants.
- * This class must implement the Serializable interface because it
- * is intended to be passed through an intent in an android application,
- * which requires all objects be serializable.
- *
- * @author Sebastian Babb
- * @version 1.0
- *          Date: 06/17/2015
+ * Created by Elaine on 7/9/2015.
  */
-public class Restaurant implements Serializable {
-    /*
-     * Data Fields.
-     */
-    private String mName;
-    private String mMobileUrl;
-    private String mRatingImageUrl;
-    private String mRestaurantImageUrl;
-    private String mAddress;
-    private String mNeighborhood;
-    private String mCityStateZip;
+public class Restaurant implements Serializable{
+    private boolean is_claimed;
+    private double rating;
+    private String mobile_url;
+//    private String rating_img_url;
+    private int review_count;
+    private String name;
+    private String rating_img_url_small;
+    private String url;
+    private boolean is_closed;
+    private String id;
+    private long phone;
+    private String snippet_text;
+    private String image_url;
+    private String[][] categories;
+    private String display_phone;
+//    private String rating_img_url_large;
+    private String menu_provider;
+    private long menu_date_updated;
+    private String snippet_image_url;
+    private Locations location;
 
-    /*
-     * Constructors.
-     */
-    public Restaurant() {
-        // Default constructor.
+
+    //getters
+    public boolean getIsClaimed() {
+        return is_claimed;
     }
 
-    public Restaurant(String pName) {
-        this.mName = pName;
-    }
-
-
-    public Restaurant(String pName, String pMobileUrl) {
-        this.mName = pName;
-        this.mMobileUrl = pMobileUrl;
-    }
-
-    public Restaurant(String pName, String pMobileUrl, String pAddress) {
-        this.mName = pName;
-        this.mMobileUrl = pMobileUrl;
-        this.mAddress = pAddress;
-    }
-
-    public Restaurant(String pName, String pMobileUrl, String pAddress, String pNeighborhood) {
-        this.mName = pName;
-        this.mMobileUrl = pMobileUrl;
-        this.mAddress = pAddress;
-        this.mNeighborhood = pNeighborhood;
-    }
-
-    public Restaurant(String pName, String pMobileUrl, String pAddress, String pNeighborhood, String pCityStateZip) {
-        this.mName = pName;
-        this.mMobileUrl = pMobileUrl;
-        this.mAddress = pAddress;
-        this.mCityStateZip = pCityStateZip;
-        this.mNeighborhood = pNeighborhood;
-    }
-
-    public Restaurant(String pName, String pMobileUrl, String pRatingImageURL, String pAddress, String pNeighborhood, String pCityStateZip) {
-            this.mName = pName;
-            this.mMobileUrl = pMobileUrl;
-            this.mRatingImageUrl = pRatingImageURL;
-            this.mAddress = pAddress;
-            this.mCityStateZip = pCityStateZip;
-            this.mNeighborhood = pNeighborhood;
-        }
-
-    public Restaurant(String pName, String pMobileUrl, String pRatingImageURL, String pRestaurantImageUrl, String pAddress, String pNeighborhood, String pCityStateZip) {
-        this.mName = pName;
-        this.mMobileUrl = pMobileUrl;
-        this.mRatingImageUrl = pRatingImageURL;
-        this.mRestaurantImageUrl = pRestaurantImageUrl;
-        this.mAddress = pAddress;
-        this.mCityStateZip = pCityStateZip;
-        this.mNeighborhood = pNeighborhood;
-    }
-
-    /*
-     * Setters.
-     */
-    public void setName(String mName) {
-        this.mName = mName;
-    }
-
-    public void setMobileUrl(String mMobileUrl) {
-
-        this.mMobileUrl = mMobileUrl;
-    }
-
-    public void setRatingImageUrl(String ratingImageUrl) {
-        this.mRatingImageUrl = ratingImageUrl;
-    }
-
-    public void setRestaurantImageUrl(String restaurantImageUrl)  throws MalformedURLException{
-        this.mRestaurantImageUrl = restaurantImageUrl;
-    }
-
-    public void setAddress(String mAddress) {
-        this.mAddress = mAddress;
-    }
-
-    public void setCityStateZip(String pCityStateZip) {
-        this.mCityStateZip = pCityStateZip;
-    }
-
-    public void setmNeighborhood(String mNeighborhood) {
-        this.mNeighborhood = mNeighborhood;
-    }
-
-    /*
-     * Getters.
-     */
-    public String getName() {
-        return this.mName;
+    public double getRating() {
+        return rating;
     }
 
     public String getMobileUrl() {
-        return this.mMobileUrl;
+        return mobile_url;
     }
 
-    public String getRatingImageUrl() {
-        return this.mRatingImageUrl;
+    public int getReviewCount() {
+        return review_count;
     }
 
-    public String getRestaurantImageUrl() {
-        return this.mRestaurantImageUrl;
+    public String getName() {
+        return name;
     }
 
-    public String getAddress() {
-        return this.mAddress;
+    public String getRatingImgUrlSmall() {
+        return rating_img_url_small;
     }
 
-    public String getCityStateZip() {
-        return this.mCityStateZip;
+    public String getUrl() {
+        return url;
     }
 
-    public String getNeighborhood() {
-        return this.mNeighborhood;
+    public boolean getIsClosed() {
+        return is_closed;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public long getPhoneNumber() {
+        return phone;
+    }
+
+    public String getSnippetText() {
+        return snippet_text;
+    }
+
+    public String getImageUrl() {
+        return image_url;
+    }
+
+    public String[][]  getCatergories() {
+        return categories;
+    }
+
+    public String getDisplayPhone() {
+        return display_phone;
+    }
+
+    public String getMenuProvider() {
+        return menu_provider;
+    }
+
+    public long getUpdatedMenuDate() {
+        return menu_date_updated;
+    }
+
+    public String getSnippetImageUrl() {
+        return snippet_image_url;
+    }
+
+    public Locations getLocation() {
+        return location;
+    }
+
+
+    //setters
+    public void setIsClaimed(boolean is_claimed) {
+        this.is_claimed = is_claimed;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public void setMobileUrl(String mobile_url) {
+        this.mobile_url = mobile_url;
+    }
+
+    public void setReview_count(int review_count) {
+        this.review_count = review_count;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSmallRatingImgUrl(String rating_img_url_small) {
+        this.rating_img_url_small = rating_img_url_small;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setIsClosed(boolean isClosed) {
+        is_closed = isClosed;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPhoneNumber(long phone)
+    {
+        this.phone = phone;
+    }
+
+    public void setSnippetText() {
+        this.snippet_text = snippet_text;
+    }
+
+    public void setImageUrl(String image_url) {
+        this.image_url = image_url;
+    }
+
+    public void setCategories(String[][]  categories) {
+        this.categories = categories;
+    }
+
+    public void setDisplayPhone(String display_phone) {
+        this.display_phone = display_phone;
+    }
+
+    public void setMenuProvider(String menu_provider) {
+        this.menu_provider = menu_provider;
+    }
+
+    public void setUpdatedMenuDate(long menu_date_updated) {
+        this.menu_date_updated = menu_date_updated;
+    }
+
+    public void setSnippetImageUrl(String snippet_image_url) {
+        this.snippet_image_url = snippet_image_url;
+    }
+
+    public void setLocation(Locations location) {
+        this.location = location;
+    }
+
+
 }
 

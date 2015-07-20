@@ -73,11 +73,11 @@ public class ListItemAdapter extends ArrayAdapter<Restaurant> {
          */
 
         // Retrieve star rating image from yelp.
-        if(restaurants[position].getRatingImageUrl() != null) {
+        if(restaurants[position].getRatingImgUrlSmall() != null) {
             try {
-                Log.i(TAG, "Rating Image URL: " + restaurants[position].getRatingImageUrl());
+                Log.i(TAG, "Rating Image URL: " + restaurants[position].getRatingImgUrlSmall());
                 // Pass the image url and download it in the background.
-                new AsyncHttpImageTask(restaurantRating).execute(new URL(restaurants[position].getRatingImageUrl())); // CHANGE RESTAURANT OBJECT URL TO FROM STRING TO URL TYPE.
+                new AsyncHttpImageTask(restaurantRating).execute(new URL(restaurants[position].getRatingImgUrlSmall())); // CHANGE RESTAURANT OBJECT URL TO FROM STRING TO URL TYPE.
             } catch(MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -86,11 +86,11 @@ public class ListItemAdapter extends ArrayAdapter<Restaurant> {
         }
 
         // Retrieve restaurant image from yelp.
-        if(restaurants[position].getRestaurantImageUrl() != null) {
+        if(restaurants[position].getImageUrl() != null) {
             try {
-                Log.i(TAG, "Restaurant Image URL: " + restaurants[position].getRestaurantImageUrl());
+                Log.i(TAG, "Restaurant Image URL: " + restaurants[position].getImageUrl());
                 // Pass the image url and download it in the background.
-                new AsyncHttpImageTask(restaurantImage).execute(new URL(restaurants[position].getRestaurantImageUrl())); // CHANGE RESTAURANT OBJECT URL TO FROM STRING TO URL TYPE.
+                new AsyncHttpImageTask(restaurantImage).execute(new URL(restaurants[position].getImageUrl())); // CHANGE RESTAURANT OBJECT URL TO FROM STRING TO URL TYPE.
             } catch(MalformedURLException e) {
                 e.printStackTrace();
             }
@@ -98,8 +98,11 @@ public class ListItemAdapter extends ArrayAdapter<Restaurant> {
 
         // Set the text attributes of the list_item view.
         restaurantName.setText(restaurants[position].getName());
-        restaurantStreet.setText(restaurants[position].getAddress());
-        restaurantCity.setText(restaurants[position].getCityStateZip());
+        restaurantStreet.setText(restaurants[position].getLocation().getAddress()[0]);
+        restaurantCity.setText(restaurants[position].getLocation().getCity());
+        restaurantCity.setText(restaurants[position].getLocation().getStateCode());
+        restaurantCity.setText(restaurants[position].getLocation().getPostalCode());
+
         /*
          * get hours and status need to be implemented.
          */
