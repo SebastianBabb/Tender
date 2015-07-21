@@ -9,7 +9,7 @@ public class Restaurant implements Serializable{
     private boolean is_claimed;
     private double rating;
     private String mobile_url;
-//    private String rating_img_url;
+    private String rating_img_url;
     private int review_count;
     private String name;
     private String rating_img_url_small;
@@ -21,7 +21,7 @@ public class Restaurant implements Serializable{
     private String image_url;
     private String[][] categories;
     private String display_phone;
-//    private String rating_img_url_large;
+    private String rating_img_url_large;
     private String menu_provider;
     private long menu_date_updated;
     private String snippet_image_url;
