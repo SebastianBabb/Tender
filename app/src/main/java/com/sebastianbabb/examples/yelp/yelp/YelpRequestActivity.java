@@ -9,14 +9,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -37,7 +41,7 @@ import com.sebastianbabb.examples.yelp.Restaurant;
  * @version 1.0
  *          Date: 06/17/2015
  */
-public class YelpRequestActivity extends ListActivity implements OnClickListener {
+public class YelpRequestActivity extends ListActivity {
     // Log TAG for monitoring this activity in the system logs.
     public static final String TAG = "YelpRequestActivity";
 
@@ -49,12 +53,26 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
     public static final String HASH_KEY_SEARCH_TERM = "SEARCH TERM";
     public static final String HASH_KEY_SEARCH_LIMIT = "SEARCH LIMIT";
 
+    // The number of search results to return.
+    private String SEARCH_LIMIT = "20";
+
+    // Location layout.
+    private LinearLayout mLocationLayout;
+
     // View widgets.
-    private EditText mEditTextLocation;   // Search location input.
-    private EditText mEditTextTerm;       // Search term input.
-    private Spinner mSpinnerLimit;        // Search results limit.
-    private Button mButtonSearch;         // Search button.
-    private TextView mTextViewEmpty;      // Default results display (needed for updating).
+    private DrawerLayout mNavDrawerLayout;  // Navigation drawer.
+    private ListView mNavDrawerListView;    // Navigation drawer list view.
+    private EditText mEditTextLocation;     // Search location input.
+    private EditText mEditTextTerm;         // Search term input.
+    private TextView mTextViewEmpty;        // Default results display (needed for updating).
+    private ImageView mToggleLocationLayoutButton;  // Button to toggle location setting view.
+    private ImageView mOpenNavDrawerButton;         // Button to open navigation drawer.
+    private ImageView mGetCurrentLocationButton;    // Button to set location to current location.
+
+    // View animations.
+    private Animation mOpenLocationAnimation;
+    private Animation mCloseLocationAnimation;
+    private Animation mRotateLocationButton;
 
     // A broadcast receiver for receiving the intent containing the search results from the service.
     private YelpBroadcastReceiver mBroadcastReceiver;
@@ -62,6 +80,12 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
     // Holds the restaurant results from yelp.
     private Restaurant[] restaurants;
 
+    // Location layout animation flags.
+    private boolean isRunning = false;
+    private boolean isLocationOpen = false;
+
+    // Current location.
+    private String mCurrentSearchLocation;
 
     // The onCreate method is called when the application is opened. This is were everything happens.
     @Override
@@ -79,26 +103,151 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
         // Set the content view to our xml layout (res/layout/activity_yelp_request.xml).
         setContentView(R.layout.activity_yelp_request);
 
-        // Wire up the view widgets.
-        mEditTextLocation = (EditText) findViewById(R.id.et_location);
-        mEditTextTerm = (EditText) findViewById(R.id.et_term);
-        mSpinnerLimit = (Spinner) findViewById(R.id.spinner_limit);
-        mButtonSearch = (Button) findViewById(R.id.bt_search);
-        mTextViewEmpty = (TextView) getListView().getEmptyView();
+        final Context context = this;   // TEMP FOR NOW.
 
+        // Wire up the view widgets.
+        mLocationLayout = (LinearLayout) findViewById(R.id.location_setting_view);
+        mNavDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mNavDrawerListView = (ListView) findViewById(R.id.navigation_drawer_listview);
+        mEditTextLocation = (EditText) findViewById(R.id.et_location);
+        mEditTextTerm = (EditText) findViewById(R.id.search_term);
+        mTextViewEmpty = (TextView) getListView().getEmptyView();
+        mToggleLocationLayoutButton = (ImageView) findViewById(R.id.bt_toggle_location_view);
+        mOpenNavDrawerButton = (ImageView) findViewById(R.id.bt_open_nav_drawer);
+        mGetCurrentLocationButton = (ImageView) findViewById(R.id.bt_get_current_location);
 
         /*
-         * Create an ArrayAdapter for the spinner using the string array declared
-         * in res/values/strings.xml and a default spinner layout.
+         * Set the items to display in the navigation drawer (settings, history, ect...)
          */
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_limit, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears.
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner.
-        mSpinnerLimit.setAdapter(adapter);
+        String[] navItems = {"Settings", "About US"}; /* MOVE TO STRINGS XML FILE */
+        mNavDrawerListView.setAdapter(new ArrayAdapter<>(this, R.layout.navigation_drawer_list_item, navItems));
 
-        // Set the onclick listener for the search button.
-        mButtonSearch.setOnClickListener(this);
+        /*
+         * Load animation files.
+         */
+        mOpenLocationAnimation = AnimationUtils.loadAnimation(this, R.anim.open_set_location_view);
+        mCloseLocationAnimation = AnimationUtils.loadAnimation(this, R.anim.close_set_location_view);
+        mRotateLocationButton = AnimationUtils.loadAnimation(this, R.anim.rotate_location_button);
+
+        /*
+         * Set an animation listener to determine when opening the location settings view is done.
+         */
+        mOpenLocationAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Set the animation running flag to true.
+                isRunning = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Set the animation running flag to false.
+                isRunning = false;
+                // Hide the navigation drawer button so that it cant be clicked.
+                mOpenNavDrawerButton.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Do nothing.
+            }
+        });
+
+        mCloseLocationAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // Set the animation running flag to true.
+                isRunning = true;
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Set the animation running flag to false.
+                isRunning = false;
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // Do nothing.
+            }
+        });
+
+        /*
+         * Set the onclick listener for the open location layout button (top right button).
+         */
+        mToggleLocationLayoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*
+                 * Check that the animation is not running and that the location layout is not
+                 * already open, then open it.  Otherwise, close it.
+                 */
+                if (!isRunning && !isLocationOpen) {
+                    openLocationSettings();
+                } else {
+                    closeLocationSettings();
+                }
+            }
+        });
+
+        /*
+         * Queries location services and sets the location field to the current location.
+         */
+        mGetCurrentLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Aquiring Current Location", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*
+         * Set the action listener for the search term input field.  This will be called when the
+         * user hits the search button on the virtual keyboard.
+         */
+        mEditTextTerm.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                // Validate the user input.
+                // Start the loading dialog.
+                // Perform your search.
+                searchYelp();
+
+                return false;
+            }
+        });
+
+        /*
+         * Set the action listener for the location input field. This will be executed when the user
+         * presses the carriage return button on the virtual keyboard.
+         */
+        mEditTextLocation.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                Toast.makeText(context, mEditTextLocation.getText().toString(), Toast.LENGTH_LONG).show();
+
+                // Dismiss the virtual keyboard.
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(mEditTextLocation.getWindowToken(), 0);
+
+                // Close the location settings view.
+                closeLocationSettings();
+
+                // Set the open navigation drawer button back to visible.
+                mOpenNavDrawerButton.setVisibility(View.VISIBLE);
+
+                return false;
+            }
+        });
+
+        /*
+         * Set the onclick listener for the open navigation drawer button (top left button).
+         */
+        mOpenNavDrawerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mNavDrawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
 
         /*
          * Set the broadcast receiver to listen for updates from YelpRequestService.  There is no
@@ -153,16 +302,57 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
     }
 
     /**
-     * The onClick method retrieves the user inputs from the view widgets, stores their values into
-     * a hashmap, creates an intent and stores that hashmap in the intent as an extra, then calls
-     * the YelpRequestService class, a subclass of ServiceIntent, passing it that intent.
-     *
-     * @param v The view object, widget, which was clicked (mButtonSearch in this case).
+     * Animates the opening of the search location setting view storing the current search location
+     * for comparison when the view is closed to determine if a new search location has been set.
      */
-    @Override
-    public void onClick(View v) {
+    private void openLocationSettings() {
+        // Store the current location.
+        mCurrentSearchLocation = mEditTextLocation.getText().toString();
+        // Make the location layout visible.
+        mLocationLayout.setVisibility(View.VISIBLE);
+        // Slide the location layout out from the right.
+        mLocationLayout.startAnimation(mOpenLocationAnimation);
+        // Rotate the toggle location button in sync with the opening of the location layout.
+        mToggleLocationLayoutButton.startAnimation(mRotateLocationButton);
+        // Set the location layout is open flag to true.
+        isLocationOpen = true;
+    }
+
+    /**
+     * Animates the closing of the search location setting view checking if a new search location has
+     * been entered.  If a new seach location has been entered, it stores the location and executes
+     * a new search with the existing search term and the updated location.
+     */
+    private void closeLocationSettings() {
+        // Slide the location layout in from the left.
+        mLocationLayout.startAnimation(mCloseLocationAnimation);
+        // Rotate the toggle location button in sync with the closing of the location layout.
+        mToggleLocationLayoutButton.startAnimation(mRotateLocationButton);
+        // Set the location layout open flag to false.
+        isLocationOpen = false;
+        // Remove the layout to avoid bleed through click events.
+        mLocationLayout.setVisibility(View.GONE);
+        // Set the open navigation drawer button back to visible.
+        mOpenNavDrawerButton.setVisibility(View.VISIBLE);
+        /*
+         * Check if a new location was set.  If so, store it and update the search.
+         */
+        if(!mCurrentSearchLocation.equalsIgnoreCase(mEditTextLocation.getText().toString())) {
+            Log.i(TAG,"New location set: " + mEditTextLocation.getText().toString());
+            // Update the current search location
+            mCurrentSearchLocation = mEditTextLocation.getText().toString();
+            // Execute a yelp search with the new location.
+            searchYelp();
+        }
+
+    }
+
+    /**
+     * Searches yelp using the parameters provided in the search term and location fields by the user.
+     */
+    public void searchYelp() {
         // Log location.
-        Log.i(TAG, "In  onClick() method. Calling object: " + getResources().getResourceName(v.getId()));
+        Log.i(TAG, "calling searchYelp() Term: " + mEditTextTerm.getText().toString() + "Location: " + mEditTextLocation.getText().toString());
 
         // Dismiss the virtual keyboard.
         InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -177,7 +367,7 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
         HashMap<String, String> hash = new HashMap<>();
         hash.put(HASH_KEY_SEARCH_LOCATION, mEditTextLocation.getText().toString());
         hash.put(HASH_KEY_SEARCH_TERM, mEditTextTerm.getText().toString());
-        hash.put(HASH_KEY_SEARCH_LIMIT, mSpinnerLimit.getSelectedItem().toString());
+        hash.put(HASH_KEY_SEARCH_LIMIT, SEARCH_LIMIT);
 
         /*
          * Log the values being inserted in to the hashmap.
@@ -185,7 +375,7 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
         Log.i(TAG, "Building the hashmap.");
         Log.i(TAG, HASH_KEY_SEARCH_LOCATION + ":" + hash.get(HASH_KEY_SEARCH_LOCATION));
         Log.i(TAG, HASH_KEY_SEARCH_TERM + ":" + hash.get(HASH_KEY_SEARCH_TERM));
-        Log.i(TAG, HASH_KEY_SEARCH_LIMIT + ":" + hash.get(HASH_KEY_SEARCH_LIMIT));
+        Log.i(TAG, HASH_KEY_SEARCH_LIMIT + ":" + SEARCH_LIMIT);
 
         /*
          * Build the service request intent for calling the YelpRequestService class and store the
@@ -200,7 +390,7 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
     }
 
     /**
-     * Displays the name, address, and mobile url of the restaurant the is clicked.
+     * Displays the name, address, and mobile url of the restaurant that is clicked.
      *
      * @param lv       The ListView object the item belongs to.
      * @param v        The view of the clicked object.
@@ -209,8 +399,8 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
      */
     protected void onListItemClick(ListView lv, View v, int position, long id) {
         Toast.makeText(this, restaurants[position].getName() + "\n" +
-                restaurants[position].getLocation().getAddress()[0] + ", " +
-                restaurants[position].getUrl(), Toast.LENGTH_SHORT).show();
+                restaurants[position].getLocation().getAddress() + ", " +
+                restaurants[position].getMobileUrl(), Toast.LENGTH_SHORT).show();
 
         // Start the map activity.
         startMapActivity(position);
@@ -267,6 +457,4 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
             }
         }
     }
-
-
 }

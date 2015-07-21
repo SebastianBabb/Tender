@@ -143,10 +143,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
         // Merge the street address with city, state, and zip.
 
-        address = restaurants[restaurantIndex].getLocation().getAddress()[0] + ", " +
-                restaurants[restaurantIndex].getLocation().getCity() + ", " +
-                restaurants[restaurantIndex].getLocation().getStateCode() + ", " +
-                restaurants[restaurantIndex].getLocation().getPostalCode();
+        address = restaurants[restaurantIndex].getLocation().getAddress() + ", " +
+                restaurants[restaurantIndex].getLocation().getCity(); // + ", " +
+//                restaurants[restaurantIndex].getLocation().getStateCode() + ", " +
+//                restaurants[restaurantIndex].getLocation().getPostalCode();
 
         // Log the address.
         Log.i(TAG, "Address: " + address);
