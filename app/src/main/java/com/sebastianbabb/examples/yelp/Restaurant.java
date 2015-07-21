@@ -74,6 +74,8 @@ public class Restaurant implements Serializable{
     }
 
     public String getImageUrl() {
+        int index = image_url.lastIndexOf('/');
+        image_url = image_url.substring(0,index) + "/l.jpg";
         return image_url;
     }
 
