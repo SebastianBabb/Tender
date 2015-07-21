@@ -1,7 +1,5 @@
 package com.sebastianbabb.examples.yelp.yelp;
 
-import org.json.JSONException;
-
 import java.util.HashMap;
 
 import android.app.IntentService;
@@ -9,7 +7,6 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.google.gson.JsonParseException;
 import com.sebastianbabb.examples.yelp.json.GSONParser;
 import com.sebastianbabb.examples.yelp.Restaurant;
 
@@ -45,10 +42,10 @@ public class YelpRequestService extends IntentService {
      * OAuth credentials for the Yelp API.
      * Site: http://www.yelp.com/developers/getting_started/api_access
      */
-    private static final String CONSUMER_KEY = "sPuS7O2H_wjsWH-Z05FC4Q";
-    private static final String CONSUMER_SECRET = "ZF7xibekNhrGWtpy3ZmaXhfPXek";
-    private static final String TOKEN = "MoR29kL8R9MugpzmI02clqB3mrgmLHH7";
-    private static final String TOKEN_SECRET = "7IWKN4Sx-WGK9DLvriWbHmQQfpg";
+    private static final String CONSUMER_KEY = "76cCryc1HiIv2oIcSERdWw";
+    private static final String CONSUMER_SECRET = "kRzG86ScQoMxRl9oE7eRAonTWTQ";
+    private static final String TOKEN = "JeuDl8Isymn28m2En7SndEuyqGDxZXP3";
+    private static final String TOKEN_SECRET = "3L9qBNvDt12Qnju_IaEs_S3ps54";
 
     /**
      * In an IntentService, the onHandleIntent method is run on a background thread (the
@@ -91,14 +88,14 @@ public class YelpRequestService extends IntentService {
 
 
         /*
-         * Create a GSONParser object passing the JSON string in as a parameter.  Then call the
-         * GSONParser's getRestaurants method to retrieve a list a restaurant objects.
+         * Create a JSONParser object passing the JSON string in as a parameter.  Then call the
+         * JSONParser's getRestaurants method to retrieve a list a restaurant objects.
          */
         try {
             GSONParser parser = new GSONParser(results);
             // Parse the json for restaurant objects.
             restaurants = parser.getRestaurantList();
-        } catch (JsonParseException e) {
+        } catch (Exception e) {
             System.out.print(e.toString());
         }
 
