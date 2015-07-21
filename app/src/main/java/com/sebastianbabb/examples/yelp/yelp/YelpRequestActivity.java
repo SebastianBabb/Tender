@@ -209,9 +209,8 @@ public class YelpRequestActivity extends ListActivity implements OnClickListener
      */
     protected void onListItemClick(ListView lv, View v, int position, long id) {
         Toast.makeText(this, restaurants[position].getName() + "\n" +
-                restaurants[position].getAddress() + ", " +
-                restaurants[position].getCityStateZip() + "\n" +
-                restaurants[position].getMobileUrl(), Toast.LENGTH_SHORT).show();
+                restaurants[position].getLocation().getAddress()[0] + ", " +
+                restaurants[position].getUrl(), Toast.LENGTH_SHORT).show();
 
         // Start the map activity.
         startMapActivity(position);

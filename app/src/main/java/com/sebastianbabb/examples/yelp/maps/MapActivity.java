@@ -18,7 +18,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.sebastianbabb.examples.yelp.R;
 import com.sebastianbabb.examples.yelp.Restaurant;
-import com.sebastianbabb.examples.yelp.maps.GeocodeService;
 
 /**
  * The MapActivity displays a full screen map and marks the location of a restaurant selected from
@@ -43,7 +42,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     // View widgets.
     private MapFragment mMapFragment;
 
-    // Location (lat/long) of the restaurant.
+    // com.sebastianbabb.examples.yelp.YelpRequestService.Location (lat/long) of the restaurant.
     private Location location;
 
     // The restaurants array and index of the selected one from the list.
@@ -143,8 +142,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         temp = null;
 
         // Merge the street address with city, state, and zip.
-        address = restaurants[restaurantIndex].getAddress() + ", " +
-                  restaurants[restaurantIndex].getCityStateZip();
+
+        address = restaurants[restaurantIndex].getLocation().getAddress()[0] + ", " +
+                restaurants[restaurantIndex].getLocation().getCity() + ", " +
+                restaurants[restaurantIndex].getLocation().getStateCode() + ", " +
+                restaurants[restaurantIndex].getLocation().getPostalCode();
 
         // Log the address.
         Log.i(TAG, "Address: " + address);
