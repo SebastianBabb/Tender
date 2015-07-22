@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp;
+package com.csc413.group2.tender;
 
 /**
  * Created by Gilbert on 7/20/2015.

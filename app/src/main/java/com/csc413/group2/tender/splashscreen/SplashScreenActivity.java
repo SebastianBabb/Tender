@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp.splashscreen;
+package com.csc413.group2.tender.splashscreen;
 
 
 
@@ -13,15 +13,10 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.view.animation.Animation.AnimationListener;
 import android.media.MediaPlayer;
-import android.os.Handler;
 import android.graphics.drawable.AnimationDrawable;
-import com.sebastianbabb.examples.yelp.R;
+import com.csc413.group2.tender.R;
 
 
 

@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp.yelp;
+package com.csc413.group2.tender.yelp;
 
 import java.util.HashMap;
 
@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.sebastianbabb.examples.yelp.json.GSONParser;
-import com.sebastianbabb.examples.yelp.Restaurant;
+import com.csc413.group2.tender.json.GSONParser;
+import com.csc413.group2.tender.Restaurant;
 
 
 /**
@@ -73,7 +73,6 @@ public class YelpRequestService extends IntentService {
         Log.i(TAG, "Location:" + location);
         Log.i(TAG, "Term:" + term);
         Log.i(TAG, "Limit:" + limit);
-
 
         /*
          *Create a YelpApi object and call it's search method passing it the search parameters.

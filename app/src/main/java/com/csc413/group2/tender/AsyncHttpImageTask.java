@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp;
+package com.csc413.group2.tender;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

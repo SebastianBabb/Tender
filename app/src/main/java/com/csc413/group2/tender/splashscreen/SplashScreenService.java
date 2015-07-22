@@ -1,6 +1,6 @@
-package com.sebastianbabb.examples.yelp.splashscreen;
+package com.csc413.group2.tender.splashscreen;
 
-import com.sebastianbabb.examples.yelp.yelp.YelpRequestActivity;
+import com.csc413.group2.tender.yelp.YelpRequestActivity;
 
 import android.app.IntentService;
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp.yelp;
+package com.csc413.group2.tender.yelp;
 
 import java.util.HashMap;
 
@@ -25,10 +25,10 @@ import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.sebastianbabb.examples.yelp.ListItemAdapter;
-import com.sebastianbabb.examples.yelp.maps.MapActivity;
-import com.sebastianbabb.examples.yelp.R;
-import com.sebastianbabb.examples.yelp.Restaurant;
+import com.csc413.group2.tender.ListItemAdapter;
+import com.csc413.group2.tender.maps.MapActivity;
+import com.csc413.group2.tender.R;
+import com.csc413.group2.tender.Restaurant;
 
 /**
  * The YelpRequestActivity is an example activity demonstrating the use of the yelp API

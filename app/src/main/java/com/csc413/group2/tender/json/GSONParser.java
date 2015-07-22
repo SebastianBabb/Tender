@@ -1,11 +1,11 @@
-package com.sebastianbabb.examples.yelp.json;
+package com.csc413.group2.tender.json;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.sebastianbabb.examples.yelp.Restaurant;
-import com.sebastianbabb.examples.yelp.Results;
+import com.csc413.group2.tender.Restaurant;
+import com.csc413.group2.tender.Results;
 
 /**
  * A class for parsing JSON strings.

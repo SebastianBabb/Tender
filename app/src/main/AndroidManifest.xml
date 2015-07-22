@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sebastianbabb.examples.yelp" >
+    package="com.csc413.group2.tender" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -16,7 +16,7 @@
             android:value="AIzaSyC9jZArr58v_mfWVTswfCg07Xtuu0_Uzk8" />
 
         <activity
-            android:name=".splashscreen.SplashScreenActivity"
+            android:name="com.csc413.group2.tender.splashscreen.SplashScreenActivity"
             android:screenOrientation="locked"
             android:label="@string/app_name" >
             <intent-filter>
@@ -27,27 +27,27 @@
         </activity>
 
         <service
-            android:name=".splashscreen.SplashScreenService"
+            android:name="com.csc413.group2.tender.splashscreen.SplashScreenService"
             android:exported="false" >
         </service>
 
         <activity
-            android:name=".yelp.YelpRequestActivity"
+            android:name="com.csc413.group2.tender.yelp.YelpRequestActivity"
             android:screenOrientation="locked"
             android:label="@string/app_name" >
         </activity>
 
         <service
-            android:name=".yelp.YelpRequestService"
+            android:name="com.csc413.group2.tender.yelp.YelpRequestService"
             android:exported="false" />
 
         <activity
-            android:name=".maps.MapActivity"
+            android:name="com.csc413.group2.tender.maps.MapActivity"
             android:label="@string/title_activity_map" >
         </activity>
 
         <service
-            android:name=".maps.GeocodeService"
+            android:name="com.csc413.group2.tender.maps.GeocodeService"
             android:exported="false" >
         </service>
 

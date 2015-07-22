@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp;
+package com.csc413.group2.tender;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.csc413.group2.tender.R;
 
 import java.net.MalformedURLException;
 import java.net.URL;

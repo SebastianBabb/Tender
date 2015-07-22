@@ -1,4 +1,4 @@
-package com.sebastianbabb.examples.yelp.maps;
+package com.csc413.group2.tender.maps;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,8 +16,8 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.sebastianbabb.examples.yelp.R;
-import com.sebastianbabb.examples.yelp.Restaurant;
+import com.csc413.group2.tender.R;
+import com.csc413.group2.tender.Restaurant;
 
 /**
  * The MapActivity displays a full screen map and marks the location of a restaurant selected from
