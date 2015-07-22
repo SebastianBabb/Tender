@@ -6,7 +6,7 @@
         android:padding="5dp"
         android:background="#202020">
 
-        <com.sebastianbabb.examples.yelp.ProportionalImageView
+        <com.csc413.group2.tender.ProportionalImageView
             android:id="@+id/restaurant_image"
             android:src="@mipmap/default_image"
             android:layout_width="match_parent"
