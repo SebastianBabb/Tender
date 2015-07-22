@@ -13,7 +13,7 @@
         <!-- ADD GOOGLE MAPS API KEY HERE -->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="API_KEY_GOES_HERE" />
+            android:value="AIzaSyC9jZArr58v_mfWVTswfCg07Xtuu0_Uzk8" />
 
         <activity
             android:name=".splashscreen.SplashScreenActivity"
