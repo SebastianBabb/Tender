@@ -24,11 +24,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.AdapterView;
 
 import com.csc413.group2.tender.ListItemAdapter;
 import com.csc413.group2.tender.maps.MapActivity;
 import com.csc413.group2.tender.R;
 import com.csc413.group2.tender.Restaurant;
+import com.csc413.group2.tender.preferences.AppPreferences;
 
 /**
  * The YelpRequestActivity is an example activity demonstrating the use of the yelp API
@@ -41,7 +43,7 @@ import com.csc413.group2.tender.Restaurant;
  * @version 1.0
  *          Date: 06/17/2015
  */
-public class YelpRequestActivity extends ListActivity {
+public class  YelpRequestActivity extends ListActivity {
     // Log TAG for monitoring this activity in the system logs.
     public static final String TAG = "YelpRequestActivity";
 
@@ -128,6 +130,29 @@ public class YelpRequestActivity extends ListActivity {
         mOpenLocationAnimation = AnimationUtils.loadAnimation(this, R.anim.open_set_location_view);
         mCloseLocationAnimation = AnimationUtils.loadAnimation(this, R.anim.close_set_location_view);
         mRotateLocationButton = AnimationUtils.loadAnimation(this, R.anim.rotate_location_button);
+
+        /*
+         *Set onItemClick Listener for the nav drawer items.
+         */
+
+        mNavDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        Intent i = new Intent(YelpRequestActivity.this, AppPreferences.class);
+                        i.putExtra("FROM_ACTIVITY","request");
+                        startActivity(i);
+                        break;
+                    case 1:
+                        //Add intent to the About Us page here
+                        break;
+                    //and so on
+                    default:
+                        break;
+                }
+            }
+        });
 
         /*
          * Set an animation listener to determine when opening the location settings view is done.

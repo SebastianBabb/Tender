@@ -24,7 +24,7 @@ public class YelpRequestService extends IntentService {
     public static final String TAG = "YelpRequestService";
 
     // Static constants for passing information back to the calling activity.
-    public static final String ACTION_YELP_REQUEST_SERVICE = "com.csc413.group2.tender.yelp.RESULTS"";
+    public static final String ACTION_YELP_REQUEST_SERVICE = "com.csc413.group2.tender.yelp.RESULTS";
     public static final String RESULT_KEY = "RESULT_KEY";
 
     /**

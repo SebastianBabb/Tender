@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YelpApiExample</string>
+    <string name="app_name">Tender</string>
 
     <string name="et_location">Search Location</string>
     <string name="et_term">Seach Term</string>
@@ -11,6 +11,8 @@
     <string name="bt_search">Search</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="prefTitle">Preferences</string>
 
     <!-- Limit on yelp api search results is 20 -->
     <string-array name="spinner_limit">
@@ -30,6 +32,7 @@
     <string name="restaurant_hours">Hours: 0800-2200</string>
     <string name="restaurant_status">Open/Closed </string>
     <string name="restaurant_distance">0.00 miles</string>
+    <string name="Tender">Tender</string>
 
 
 </resources>

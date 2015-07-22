@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="Your Name"
+        android:key="username"
+        android:summary="Please provide your username"></EditTextPreference>
+    <CheckBoxPreference
+        android:title="Chinese Food"
+        android:defaultValue="false"
+        android:summary="Do you like Chinese food?"
+        android:key="chinese" />
+    <CheckBoxPreference
+        android:title="Pizza"
+        android:defaultValue="false"
+        android:summary="Do you like Pizza?"
+        android:key="pizza" />
+    <CheckBoxPreference
+        android:title="Mexican Food"
+        android:defaultValue="false"
+        android:summary="Do you like Mexican food?"
+        android:key="mexican" />
+    <CheckBoxPreference
+        android:title="Japanese"
+        android:defaultValue="false"
+        android:summary="Do you like Japanese food?"
+        android:key="japanese" />
+
+</PreferenceScreen>

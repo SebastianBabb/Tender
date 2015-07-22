@@ -1,10 +1,13 @@
 package com.csc413.group2.tender.splashscreen;
 
+import com.csc413.group2.tender.preferences.AppPreferences;
 import com.csc413.group2.tender.yelp.YelpRequestActivity;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
+import android.content.Context;
 
 /**
  * An background service that sleeps for a specified time.
@@ -15,7 +18,7 @@ public class SplashScreenService extends IntentService {
     private final String TAG = "SplashService";
 
     // The amount of time to display the splash screen in ms.
-    private final int SPLASH_TIME = 4000;
+    private final int SPLASH_TIME = 5000;
 
     // Default constructor.
     public SplashScreenService() {
@@ -31,12 +34,20 @@ public class SplashScreenService extends IntentService {
          * any information.
          */
 
+
+
+
         // Create a new thread that sleeps for three seconds to simulate making api calls over the network.
         try {
             Thread.sleep(SPLASH_TIME);
         } catch(InterruptedException e) {
             e.printStackTrace();
         }
+
+        //Check if preferences have been previously set.
+
+
+
 
         // Now that all the api calls are done, start the suggestions activity.
         Intent suggestionsActivityIntent = new Intent(this, YelpRequestActivity.class);

@@ -1,8 +1,8 @@
-package com.sebastianbabb.examples.yelp.json;
+/*package com.sebastianbabb.examples.yelp.json;
 
 import android.util.Log;
 
-import com.sebastianbabb.examples.yelp.Restaurant;
+import com.csc413.group2.tender.Restaurant;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -15,7 +15,7 @@ import org.json.JSONException;
  * @author Sebastian Babb
  * @version 1.0
  *          Date: 06/18/2015
- */
+
 public class JSONParser {
     // Log TAG for monitoring in the system logs.
     private static final String TAG = "JSONParser";
@@ -31,7 +31,7 @@ public class JSONParser {
 
         /*
          * Store the JSON string as a member and use it to build a JSONObject.
-         */
+
         this.mJsonString = json;
         this.mJsonObject = new JSONObject(this.mJsonString);
     }
@@ -43,7 +43,7 @@ public class JSONParser {
      * @param tag       The name of the tag to return.
      * @return A String a of newline separated tag values.
      * @throws JSONException
-     */
+
     public String getTag(String arrayName, String tag) throws JSONException {
         Log.i(TAG, "calling getTag(" + arrayName + ", " + tag + ")");
 
@@ -53,7 +53,7 @@ public class JSONParser {
         /*
          * Create a JSONArray from the JSONObject and loop through it
          * appending each tag value to the string builder with a newline.
-         */
+
         JSONArray jsonArray = this.mJsonObject.getJSONArray(arrayName);
         for (int i = 0; i < jsonArray.length(); i++) {
             // Append the tag value to the end of the string and and a newline.
@@ -62,7 +62,7 @@ public class JSONParser {
 
         /*
          * Return the constructed string from the string builder.
-         */
+
         return result.toString();
     }
 
@@ -72,7 +72,7 @@ public class JSONParser {
      * @param arrayName The name of the array containing the tags.
      * @return An array of restaurants.
      * @throws JSONException
-     */
+
     public Restaurant[] getRestaurants(String arrayName) throws JSONException {
         Log.i(TAG, "calling getRestaurants(" + arrayName + ")");
 
@@ -80,20 +80,20 @@ public class JSONParser {
          * Get the jsonarray "businesses" the  from the jsonobject.
          * The "businesses" array name is currently passed in as a
          * parameter.
-         */
+
         JSONArray jsonArray = this.mJsonObject.getJSONArray(arrayName);
 
         /*
          * Use the length of jsonArray to create a restaurant array.  Then create a parallel array
          * to store the list of restaurant names.
-         */
+
         Restaurant[] restaurants = new Restaurant[jsonArray.length()];
         this.restaurantList = new String[restaurants.length];
 
         /*
          * Loop through jsonArray creating restaurant objects and add
          * them to the restaurants array.
-         */
+
         for (int i = 0; i < jsonArray.length(); i++) {
             // Create a new restaurant object.
             restaurants[i] = new Restaurant(jsonArray.getJSONObject(i).getString("name"),
@@ -113,8 +113,9 @@ public class JSONParser {
 
         /*
          * Return the restaurants array.
-         */
+
         return restaurants;
     }
 
 }
+*/
