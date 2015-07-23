@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.csc413.group2.tender" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/tender1"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+
+        <!-- ADD GOOGLE MAPS API KEY HERE -->
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyC9jZArr58v_mfWVTswfCg07Xtuu0_Uzk8" />
+
+        <activity
+            android:name="com.csc413.group2.tender.splashscreen.SplashScreenActivity"
+            android:screenOrientation="locked"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.csc413.group2.tender.splashscreen.SplashScreenService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="locked"
+            android:label="@string/app_name" >
+        </activity>
+
+        <service
+            android:name="com.csc413.group2.tender.yelp.YelpRequestService"
+            android:exported="false" />
+
+        <activity
+            android:name="com.csc413.group2.tender.VenueActivity"
+            android:exported="false" >
+         </activity>
+
+        <activity
+            android:name="com.csc413.group2.tender.maps.MapActivity"
+            android:label="@string/title_activity_map" >
+        </activity>
+
+        <activity android:name=".preferences.AppPreferences" android:label="@string/prefTitle"
+            android:screenOrientation="nosensor"
+            android:parentActivityName=".splashscreen.SplashScreenActivity">
+
+            <intent-filer>
+                <action android:name=".Preferences" />
+                <category android:name="android.intent.catagory.PREFERENCE" />
+            </intent-filer>
+        </activity>
+
+        <service
+            android:name="com.csc413.group2.tender.maps.GeocodeService"
+            android:exported="false" >
+        </service>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/flaganim"
+    android:oneshot="false"
+    >
+    <item android:drawable="@drawable/chicken1" android:duration="700"/>
+    <item android:drawable="@drawable/chicken2" android:duration="300"/>
+    <item android:drawable="@drawable/chicken3" android:duration="300"/>
+    <item android:drawable="@drawable/chicken4" android:duration="300"/>
+    <item android:drawable="@drawable/chicken5" android:duration="300"/>
+    <item android:drawable="@drawable/chicken6" android:duration="300"/>
+    <item android:drawable="@drawable/chicken7" android:duration="300"/>
+    <item android:drawable="@drawable/chicken8" android:duration="300"/>
+    <item android:drawable="@drawable/chicken9" android:duration="300"/>
+    <item android:drawable="@drawable/chicken10" android:duration="300"/>
+    <item android:drawable="@drawable/chicken11" android:duration="300"/>
+
+
+</animation-list> 

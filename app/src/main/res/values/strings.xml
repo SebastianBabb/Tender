@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Tender</string>
+
+    <string name="et_location">Search Location</string>
+    <string name="et_term">Seach Term</string>
+    <string name="et_limit">Number of Results</string>
+
+    <string name="tv_no_queries">No Queries Made...</string>
+    <string name="tv_empty_results">No Results Found...</string>
+
+    <string name="bt_search">Search</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="prefTitle">Preferences</string>
+
+    <!-- Limit on yelp api search results is 20 -->
+    <string-array name="spinner_limit">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+    <string name="title_activity_map">MapActivity</string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+
+    <string name="restaurant_name">Name</string>
+    <string name="restaurant_street">123 Main St.</string>
+    <string name="restaurant_city_state_zip">City, State 91235</string>
+    <string name="restaurant_hours">Hours: 0800-2200</string>
+    <string name="restaurant_status">Open/Closed </string>
+    <string name="restaurant_distance">0.00 miles</string>
+    <string name="Tender">Tender</string>
+
+
+</resources>
